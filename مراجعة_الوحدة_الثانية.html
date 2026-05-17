@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة الوحدة الثانية - الصف السادس</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Amiri:wght@400;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #C8860A;
+  --gold-light: #F5C842;
+  --gold-bg: #FFF8E1;
+  --green: #1B6B3A;
+  --green-light: #2E9E57;
+  --green-bg: #E8F5EE;
+  --red: #B71C1C;
+  --red-bg: #FFEBEE;
+  --blue: #1A3A6B;
+  --blue-light: #2C5FC4;
+  --blue-bg: #E3EEFF;
+  --sand: #F5EDD8;
+  --dark: #1A1205;
+  --parchment: #FBF6ED;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: #1C1008;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-image: 
+    radial-gradient(ellipse at 20% 20%, rgba(200,134,10,0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(27,107,58,0.12) 0%, transparent 50%);
+}
+
+.game-wrap {
+  width: 100%;
+  max-width: 780px;
+}
+
+/* ===== SCREENS ===== */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ===== INTRO SCREEN ===== */
+.intro-card {
+  background: var(--parchment);
+  border-radius: 20px;
+  padding: 48px 40px;
+  text-align: center;
+  border: 3px solid var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+.intro-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(200,134,10,0.03) 30px, rgba(200,134,10,0.03) 31px);
+}
+.intro-ornament { font-size: 48px; margin-bottom: 8px; }
+.intro-title {
+  font-family: 'Amiri', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.intro-subtitle {
+  font-size: 17px;
+  color: #6B5B3A;
+  margin-bottom: 32px;
+}
+.intro-stats {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+.stat-pill {
+  background: var(--sand);
+  border: 1.5px solid rgba(200,134,10,0.4);
+  border-radius: 50px;
+  padding: 10px 22px;
+  font-size: 14px;
+  color: #5A4020;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.stat-pill span { font-weight: 700; color: var(--gold); font-size: 18px; }
+.start-btn {
+  background: linear-gradient(135deg, var(--gold), #A06A05);
+  color: white;
+  border: none;
+  padding: 16px 56px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 20px rgba(200,134,10,0.4);
+  position: relative;
+}
+.start-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(200,134,10,0.5); }
+.start-btn:active { transform: translateY(0); }
+
+/* ===== INFOGRAPHIC SCREEN ===== */
+.infographic-screen {
+  background: var(--parchment);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 3px solid var(--gold);
+}
+.info-header {
+  background: linear-gradient(135deg, var(--blue) 0%, #0D2548 100%);
+  padding: 20px 32px;
+  text-align: center;
+  color: white;
+}
+.info-header h2 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.info-header p { font-size: 13px; opacity: 0.8; }
+.info-badge {
+  display: inline-block;
+  background: var(--gold);
+  color: white;
+  border-radius: 30px;
+  padding: 6px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.info-body { padding: 28px 32px; }
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.info-card {
+  border-radius: 14px;
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+}
+.info-card.blue { background: var(--blue-bg); border: 1.5px solid rgba(44,95,196,0.3); }
+.info-card.green { background: var(--green-bg); border: 1.5px solid rgba(27,107,58,0.3); }
+.info-card.gold { background: var(--gold-bg); border: 1.5px solid rgba(200,134,10,0.3); }
+.info-card.red { background: var(--red-bg); border: 1.5px solid rgba(183,28,28,0.2); }
+.info-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+.info-card.blue h3 { color: var(--blue); }
+.info-card.green h3 { color: var(--green); }
+.info-card.gold h3 { color: #7A5200; }
+.info-card.red h3 { color: var(--red); }
+.info-card ul { list-style: none; }
+.info-card ul li {
+  font-size: 13px;
+  color: #3A3020;
+  padding: 4px 0;
+  padding-right: 16px;
+  position: relative;
+  line-height: 1.5;
+}
+.info-card ul li::before {
+  content: '◆';
+  position: absolute;
+  right: 0;
+  font-size: 8px;
+  top: 7px;
+}
+.info-card.blue ul li::before { color: var(--blue-light); }
+.info-card.green ul li::before { color: var(--green-light); }
+.info-card.gold ul li::before { color: var(--gold); }
+.info-card.red ul li::before { color: var(--red); }
+.info-full {
+  background: linear-gradient(135deg, #1A3A6B08, #2E9E5710);
+  border: 1.5px solid rgba(200,134,10,0.25);
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 16px;
+}
+.info-full h3 { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 10px; text-align: center; }
+.timeline { display: flex; gap: 0; overflow-x: auto; padding-bottom: 8px; }
+.tl-item {
+  flex: 1;
+  min-width: 100px;
+  text-align: center;
+  position: relative;
+}
+.tl-item:not(:last-child)::after {
+  content: '←';
+  position: absolute;
+  left: -10px;
+  top: 16px;
+  font-size: 18px;
+  color: var(--gold);
+}
+.tl-dot {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  margin: 0 auto 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+}
+.tl-text { font-size: 11px; color: #3A3020; line-height: 1.4; font-weight: 600; }
+.tl-year { font-size: 10px; color: #8A7050; margin-top: 3px; }
+.continue-info-btn {
+  width: 100%;
+  background: var(--green);
+  color: white;
+  border: none;
+  padding: 14px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-top: 8px;
+}
+.continue-info-btn:hover { background: var(--green-light); }
+
+/* ===== QUIZ SCREEN ===== */
+.quiz-card {
+  background: var(--parchment);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 3px solid var(--gold);
+}
+.quiz-topbar {
+  background: var(--dark);
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between;
+}
+.q-counter { color: var(--gold-light); font-size: 14px; font-weight: 700; }
+.q-score { color: white; font-size: 14px; }
+.score-val { color: var(--gold-light); font-weight: 700; }
+.timer-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.timer-icon { font-size: 18px; }
+.timer-num {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  min-width: 36px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.timer-num.urgent { color: #FF5252; animation: pulse 0.5s ease infinite alternate; }
+@keyframes pulse { to { opacity: 0.5; } }
+
+.progress-bar-wrap { background: rgba(255,255,255,0.1); height: 4px; }
+.progress-bar { height: 4px; background: var(--gold-light); transition: width 0.3s; }
+
+.quiz-body { padding: 28px 32px; }
+.q-type-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 30px;
+  margin-bottom: 14px;
+}
+.badge-mc { background: var(--blue-bg); color: var(--blue); }
+.badge-tf { background: var(--green-bg); color: var(--green); }
+.badge-fill { background: var(--gold-bg); color: #7A5200; }
+.badge-essay { background: #F3E5F5; color: #6A1B9A; }
+.badge-result { background: var(--red-bg); color: var(--red); }
+.badge-why { background: #E8F4FD; color: #0D47A1; }
+
+.q-text {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* MC Options */
+.options-grid { display: grid; gap: 12px; }
+.option-btn {
+  background: white;
+  border: 2px solid rgba(200,134,10,0.25);
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 16px;
+  color: var(--dark);
+  cursor: pointer;
+  text-align: right;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.option-btn:hover:not(:disabled) { border-color: var(--gold); background: var(--gold-bg); }
+.option-btn.correct { background: var(--green-bg); border-color: var(--green); color: var(--green); }
+.option-btn.wrong { background: var(--red-bg); border-color: var(--red); color: var(--red); }
+.option-btn:disabled { cursor: default; }
+.opt-letter {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: rgba(200,134,10,0.12);
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.option-btn.correct .opt-letter { background: var(--green); color: white; }
+.option-btn.wrong .opt-letter { background: var(--red); color: white; }
+
+/* T/F */
+.tf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.tf-btn {
+  padding: 20px;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  font-family: 'Cairo', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.tf-btn.true-btn { background: var(--green-bg); color: var(--green); border-color: rgba(27,107,58,0.3); }
+.tf-btn.false-btn { background: var(--red-bg); color: var(--red); border-color: rgba(183,28,28,0.2); }
+.tf-btn:hover:not(:disabled) { transform: scale(1.03); }
+.tf-btn.correct { border-width: 3px; box-shadow: 0 0 0 3px rgba(27,107,58,0.2); }
+.tf-btn.wrong { opacity: 0.5; }
+.tf-btn:disabled { cursor: default; }
+
+/* Fill + Essay */
+.fill-input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid rgba(200,134,10,0.3);
+  border-radius: 12px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 17px;
+  color: var(--dark);
+  background: white;
+  outline: none;
+  transition: border-color 0.15s;
+  text-align: right;
+  margin-bottom: 14px;
+}
+.fill-input:focus { border-color: var(--gold); }
+.fill-input.correct-input { border-color: var(--green); background: var(--green-bg); }
+.fill-input.wrong-input { border-color: var(--red); background: var(--red-bg); }
+textarea.fill-input {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.6;
+}
+
+.submit-btn {
+  background: var(--blue);
+  color: white;
+  border: none;
+  padding: 13px 36px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.submit-btn:hover { background: var(--blue-light); }
+
+/* Feedback banner */
+.feedback-banner {
+  margin-top: 18px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.6;
+  display: none;
+}
+.feedback-banner.correct-fb { background: var(--green-bg); color: var(--green); border: 1.5px solid rgba(27,107,58,0.3); }
+.feedback-banner.wrong-fb { background: var(--red-bg); color: var(--red); border: 1.5px solid rgba(183,28,28,0.2); }
+.feedback-banner.partial-fb { background: var(--gold-bg); color: #7A5200; border: 1.5px solid rgba(200,134,10,0.3); }
+.fb-icon { font-size: 22px; margin-left: 8px; }
+.model-answer { margin-top: 8px; padding-top: 8px; border-top: 1px solid currentColor; opacity: 0.7; font-size: 14px; }
+
+.next-btn {
+  width: 100%;
+  margin-top: 20px;
+  background: var(--gold);
+  color: white;
+  border: none;
+  padding: 14px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+  display: none;
+}
+.next-btn:hover { background: #A06A05; }
+
+/* ===== RESULTS SCREEN ===== */
+.results-card {
+  background: var(--parchment);
+  border-radius: 20px;
+  padding: 48px 40px;
+  text-align: center;
+  border: 3px solid var(--gold);
+}
+.result-trophy { font-size: 64px; margin-bottom: 12px; }
+.result-title { font-family: 'Amiri', serif; font-size: 32px; color: var(--dark); margin-bottom: 8px; }
+.result-subtitle { font-size: 16px; color: #6B5B3A; margin-bottom: 32px; }
+.score-circle {
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  border: 6px solid var(--gold);
+  margin: 0 auto 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+.score-big { font-size: 42px; font-weight: 900; color: var(--dark); line-height: 1; }
+.score-total { font-size: 15px; color: #8A7050; }
+.grade-badge {
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 40px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+.grade-a { background: var(--green-bg); color: var(--green); border: 2px solid var(--green); }
+.grade-b { background: var(--blue-bg); color: var(--blue); border: 2px solid var(--blue); }
+.grade-c { background: var(--gold-bg); color: #7A5200; border: 2px solid var(--gold); }
+.grade-d { background: var(--red-bg); color: var(--red); border: 2px solid var(--red); }
+.result-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.r-stat {
+  background: var(--sand);
+  border-radius: 12px;
+  padding: 16px;
+}
+.r-stat-num { font-size: 28px; font-weight: 700; }
+.r-stat-lbl { font-size: 13px; color: #6B5B3A; margin-top: 4px; }
+.r-stat.correct .r-stat-num { color: var(--green); }
+.r-stat.wrong .r-stat-num { color: var(--red); }
+.r-stat.time .r-stat-num { color: var(--blue); }
+.replay-btn {
+  background: var(--dark);
+  color: var(--gold-light);
+  border: 2px solid var(--gold);
+  padding: 14px 48px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.replay-btn:hover { background: var(--gold); color: white; }
+</style>
+</head>
+<body>
+<div class="game-wrap">
+
+<!-- INTRO -->
+<div id="screen-intro" class="screen active">
+  <div class="intro-card">
+    <div class="intro-ornament">🕌</div>
+    <h1 class="intro-title">مراجعة الوحدة الثانية<br>دراسات اجتماعية</h1>
+    <p class="intro-subtitle">الصف السادس الابتدائي — مصر والعالم الإسلامي</p>
+    <div class="intro-stats">
+      <div class="stat-pill">📝 عدد الأسئلة <span>35</span></div>
+      <div class="stat-pill">⏱ مدة اللعبة <span>~60</span> دقيقة</div>
+      <div class="stat-pill">📚 دروس <span>4</span></div>
+    </div>
+    <button class="start-btn" onclick="startGame()">ابدأ المراجعة ◀</button>
+  </div>
+</div>
+
+<!-- INFOGRAPHIC -->
+<div id="screen-info" class="screen">
+  <div class="infographic-screen">
+    <div class="info-header">
+      <div class="info-badge" id="info-badge">🌟 معلومة بين الأسئلة</div>
+      <h2 id="info-title">الدول المستقلة في مصر</h2>
+      <p id="info-desc">أكملت 5 أسئلة — استرح وراجع هذه المعلومات!</p>
+    </div>
+    <div class="info-body" id="info-body">
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div id="screen-quiz" class="screen">
+  <div class="quiz-card">
+    <div class="quiz-topbar">
+      <div class="q-counter">سؤال <span id="q-num">1</span> / 35</div>
+      <div class="timer-wrap">
+        <span class="timer-icon">⏳</span>
+        <span class="timer-num" id="timer-num">30</span>
+      </div>
+      <div class="q-score">النتيجة: <span class="score-val" id="score-disp">0</span></div>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar" id="progress-bar" style="width:0%"></div>
+    </div>
+    <div class="quiz-body">
+      <span class="q-type-badge" id="q-type-badge"></span>
+      <div class="q-text" id="q-text"></div>
+      <div id="q-answer-area"></div>
+      <div class="feedback-banner" id="feedback-banner"></div>
+      <button class="next-btn" id="next-btn" onclick="nextQuestion()">السؤال التالي ◀</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div id="screen-results" class="screen">
+  <div class="results-card">
+    <div class="result-trophy" id="result-trophy">🏆</div>
+    <h2 class="result-title" id="result-title">أحسنت!</h2>
+    <p class="result-subtitle" id="result-subtitle">لقد أنهيت مراجعة الوحدة الثانية</p>
+    <div class="score-circle">
+      <div class="score-big" id="final-score">0</div>
+      <div class="score-total" id="final-total">من 35</div>
+    </div>
+    <div class="grade-badge" id="grade-badge">ممتاز</div>
+    <div class="result-stats">
+      <div class="r-stat correct"><div class="r-stat-num" id="r-correct">0</div><div class="r-stat-lbl">✅ إجابات صحيحة</div></div>
+      <div class="r-stat wrong"><div class="r-stat-num" id="r-wrong">0</div><div class="r-stat-lbl">❌ إجابات خاطئة</div></div>
+      <div class="r-stat time"><div class="r-stat-num" id="r-time">0</div><div class="r-stat-lbl">⏱ دقيقة</div></div>
+    </div>
+    <button class="replay-btn" onclick="restartGame()">🔄 العب مرة أخرى</button>
+  </div>
+</div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  // درس 1 — مصر والدول المستقلة
+  {type:'mc', badge:'اختياري', time:25, q:'من بنى مدينة الفسطاط لتكون عاصمة لمصر؟',
+   opts:['أحمد بن طولون','عمرو بن العاص ☆','المعز لدين الله الفاطمي','جوهر الصقلي'], correct:1,
+   explain:'بنى عمرو بن العاص رضي الله عنه مدينة الفسطاط لتكون عاصمة لمصر.'},
+  {type:'tf', badge:'صح أم خطأ', time:20, q:'الدولة الطولونية هي أول دولة مستقلة عن الخلافة العباسية في مصر.',
+   correct:true, explain:'صحيح — أسسها أحمد بن طولون واتخذ مدينة القطائع عاصمةً لها.'},
+  {type:'fill', badge:'أكمل الفراغ', time:25, q:'بنى أحمد بن طولون مدينة _____ لتكون عاصمة لدولته.',
+   answer:'القطائع', explain:'بنى أحمد بن طولون مدينة القطائع عاصمةً لدولته الطولونية.'},
+  {type:'mc', badge:'اختياري', time:25, q:'ما سبب محاولة الدولة الفاطمية ضم مصر أكثر من مرة؟',
+   opts:['رغبتها في نشر العلوم','أهمية موقعها وقربها من الأماكن المقدسة ☆','ضعف الخلفاء العباسيين','رغبتها في السيطرة على نهر النيل'], correct:1,
+   explain:'حاولت الدولة الفاطمية ضم مصر لأهمية موقعها وقربها من الأماكن المقدسة بالحجاز.'},
+  {type:'essay', badge:'علّل', time:50, q:'لماذا ظهرت دول مستقلة في مصر خلال العصر العباسي الثاني؟',
+   keywords:['ضعف الخلفاء','نفوذ الولاة','بعد مصر','بغداد','ثروات'],
+   modelAnswer:'بسبب ضعف خلفاء الدولة العباسية، وزيادة نفوذ الولاة وطمعهم في ثروات مصر الاقتصادية، وبُعد مصر عن مركز الخلافة العباسية في بغداد.',
+   explain:''},
+  // 5 done → infographic 1
+  {type:'mc', badge:'اختياري', time:25, q:'ما سبب سقوط الدولة الفاطمية؟',
+   opts:['غزو المغول لمصر','الشدة المستنصرية وضعف الخلفاء وزيادة نفوذ الوزراء ☆','هجوم الصليبيين','قيام الدولة الطولونية'], correct:1,
+   explain:'أدت الشدة المستنصرية وضعف الخلفاء وزيادة نفوذ الوزراء إلى سقوط الدولة الفاطمية.'},
+  {type:'tf', badge:'صح أم خطأ', time:20, q:'بنى الفاطميون مدينة القطائع لتكون عاصمتهم.',
+   correct:false, explain:'خطأ — الفاطميون بنوا مدينة القاهرة عاصمةً لهم، أما القطائع فبناها أحمد بن طولون.'},
+  {type:'fill', badge:'أكمل الفراغ', time:25, q:'سقطت دولة المماليك بسبب نجاح _____ في السيطرة على مصر عام 1517م.',
+   answer:'العثمانيين', explain:'نجح العثمانيون في السيطرة على مصر عام 1517م فسقطت دولة المماليك.'},
+  {type:'mc', badge:'ماذا يحدث لو؟', time:30, q:'ماذا كان يحدث لو لم تنخفض مياه نهر النيل في عهد المستنصر بالله؟',
+   opts:['لما ظهرت الدولة الفاطمية','لما حدثت الشدة المستنصرية ☆','لقوي الصليبيون','لسقطت الدولة الطولونية'], correct:1,
+   explain:'انخفاض مياه النيل أدى إلى الشدة المستنصرية التي كان من نتائجها سقوط الدولة الفاطمية.'},
+  {type:'essay', badge:'ما النتائج؟', time:50, q:'ما النتائج المترتبة على استقلال أحمد بن طولون بحكم مصر؟',
+   keywords:['طولونية','مستقلة','القطائع','الشام','الحجاز','جامع'],
+   modelAnswer:'أسس الدولة الطولونية أول دولة مستقلة عن الخلافة العباسية، وبنى مدينة القطائع عاصمةً لدولته، وبنى جامع أحمد بن طولون، وضم الشام والحجاز لحكم مصر.',
+   explain:''},
+  // 10 done → infographic 2
+
+  // درس 2 — أخطار هددت الدولة الإسلامية
+  {type:'mc', badge:'اختياري', time:25, q:'لماذا سُميت الحملات الصليبية بهذا الاسم؟',
+   opts:['لأنها قدمت من روما','لأنها اتخذت الصليب شعاراً لها ☆','لأن قائدها يُدعى صليبا','لأن هدفها هدم المساجد'], correct:1,
+   explain:'سُميت الحملات الصليبية بهذا الاسم لأنها اتخذت الصليب شعاراً لها.'},
+  {type:'tf', badge:'صح أم خطأ', time:20, q:'من الأهداف المعلنة للحملات الصليبية تأسيس إمارات في الشرق.',
+   correct:false, explain:'خطأ — تأسيس الإمارات الصليبية كان هدفاً غير معلن؛ أما المعلن فكان حماية المسيحيين وتأمين طريق الحجاج.'},
+  {type:'fill', badge:'المصطلح', time:20, q:'يُعرَّف _____ بأنهم قبائل رعوية تسكن وسط آسيا اتحدت على يد جنكيز خان.',
+   answer:'المغول', explain:'المغول: قبائل رعوية تسكن وسط آسيا اتحدت على يد جنكيز خان وكانوا يجيدون فنون القتال.'},
+  {type:'mc', badge:'اختياري', time:30, q:'ما الذي دفع صلاح الدين لمواجهة الصليبيين في موقعة حطين؟',
+   opts:['رغبته في توحيد الجبهة الإسلامية','هجوم أرناط على قوافل حجاج المسلمين ونقضه الهدنة ☆','طلب الخليفة العباسي','فشل الحملة الصليبية الثانية'], correct:1,
+   explain:'أخل أرناط بالهدنة وهاجم قوافل حجاج المسلمين ونهب أموالهم، فتحرك صلاح الدين بجيشه لمواجهتهم.'},
+  {type:'essay', badge:'علّل', time:50, q:'علّل: نجاح المسلمين في معركة عين جالوت.',
+   keywords:['قطز','خوذة','إسلاماه','المغول','بيبرس'],
+   modelAnswer:'خلع سيف الدين قطز خوذته ونادى في جنوده "وا إسلاماه" ليحمسهم، فانتفض الجنود وانقضوا على المغول وهزموهم، وقتل قائدهم كتبغا.',
+   explain:''},
+  // 15 done → infographic 3
+  {type:'mc', badge:'ما النتائج؟', time:25, q:'ما نتيجة موقعة حطين؟',
+   opts:['فشل صلاح الدين في مواجهة الصليبيين','انتصار المسلمين وفتح بيت المقدس ☆','توقيع صلح الرملة','قدوم الحملة الصليبية الثانية'], correct:1,
+   explain:'أسفرت موقعة حطين عن انتصار المسلمين وتدمير الجيش الصليبي وفتح بيت المقدس.'},
+  {type:'tf', badge:'صح أم خطأ', time:20, q:'انتهت الحملة الصليبية الثالثة بقيادة ريتشارد قلب الأسد بانتصار الصليبيين.',
+   correct:false, explain:'خطأ — فشلت الحملة الصليبية الثالثة ولم تنجح في استعادة بيت المقدس، وانتهت بتوقيع صلح الرملة.'},
+  {type:'fill', badge:'الشخصية', time:20, q:'_____ هو أمير الشام الذي نجح في استعادة إمارة الرها من الصليبيين.',
+   answer:'عماد الدين زنكي', explain:'عماد الدين زنكي هو أمير الشام الذي استعاد إمارة الرها من الصليبيين.'},
+  {type:'mc', badge:'اختياري', time:25, q:'ما الإجراء الذي اتخذه قطز لرفع الروح المعنوية ضد المغول؟',
+   opts:['أرسل رسائل للخليفة العباسي','قطع رؤوس رسل المغول وعلقها بباب زويلة ☆','بنى قلعة صلاح الدين','عقد صلح مع الصليبيين'], correct:1,
+   explain:'قطع قطز رؤوس رسل المغول وعلقها بباب زويلة لرفع الروح المعنوية للشعب المصري.'},
+  {type:'essay', badge:'ما العلاقة؟', time:45, q:'ما العلاقة بين الحملة الصليبية الثالثة وصلح الرملة؟',
+   keywords:['ريتشارد','فشل','بيت المقدس','صلح الرملة','صلاح الدين'],
+   modelAnswer:'بعد فشل الحملة الصليبية الثالثة بقيادة ريتشارد قلب الأسد في استعادة بيت المقدس، عقد صلاح الدين صلح الرملة مع ريتشارد وبموجبه بقي بيت المقدس في يد المسلمين مع السماح للصليبيين بالحج.',
+   explain:''},
+  // 20 done → infographic 4
+
+  // درس 3 — مظاهر الحياة في الحضارة الإسلامية
+  {type:'mc', badge:'اختياري', time:25, q:'ما مهام الخليفة في الدولة الإسلامية؟',
+   opts:['جمع الزكاة فقط','إدارة شؤون الدولة وتحقيق العدل وحماية الحدود واختيار الوزراء والقضاة ☆','الإشراف على الدواوين','قيادة الجيش فقط'], correct:1,
+   explain:'يدير الخليفة شؤون الدولة ويحقق العدل ويحمي الحدود ويختار الوزراء والولاة والقضاة وقادة الجيش.'},
+  {type:'tf', badge:'صح أم خطأ', time:20, q:'أنشأ عثمان بن عفان الأسطول الإسلامي للدفاع عن الحدود البحرية.',
+   correct:true, explain:'صحيح — أسس عثمان بن عفان الأسطول الإسلامي للدفاع عن الحدود البحرية وصد هجمات البيزنطيين.'},
+  {type:'fill', badge:'المصطلح', time:25, q:'_____ هو نظام حكم إسلامي بدأ عقب وفاة رسول الله ﷺ ويعني اختيار من يدير شؤون المسلمين.',
+   answer:'الخلافة', explain:'الخلافة: نظام حكم إسلامي بدأ عقب وفاة رسول الله ﷺ ويعني اختيار من يدير شؤون المسلمين.'},
+  {type:'mc', badge:'ماذا يحدث لو؟', time:30, q:'ماذا كان يحدث لو تفانى كل فرد في حب وطنه؟',
+   opts:['ضعفت الدولة الإسلامية','ستنعم مصر بالاستقرار الدائم وسنعيش في أمان وتقدم وازدهار ☆','زادت الخلافات بين المواطنين','قلت الضرائب'], correct:1,
+   explain:'تفاني كل فرد في حب وطنه يؤدي إلى استقرار مصر الدائم والعيش في أمان وتقدم وازدهار.'},
+  {type:'essay', badge:'دلّل', time:50, q:'دلّل على أن المماليك ساهموا في حماية العالم الإسلامي.',
+   keywords:['صليبيين','مغول','تصفية','الشرق','عين جالوت'],
+   modelAnswer:'أسهم المماليك في تصفية الوجود الصليبي في الشرق، كما تصدوا لخطر المغول وهزموهم في معركة عين جالوت وحرروا بلاد الشام.',
+   explain:''},
+  // 25 done → infographic 5 (last infographic before final questions)
+  {type:'mc', badge:'اختياري', time:25, q:'من أسس نظام الولاية ونظام الدواوين في الدولة الإسلامية؟',
+   opts:['عثمان بن عفان','علي بن أبي طالب','عمر بن الخطاب ☆','أبو بكر الصديق'], correct:2,
+   explain:'يُعد عمر بن الخطاب مؤسس النظام الإداري في الحضارة الإسلامية حيث أنشأ نظام الولاية والدواوين.'},
+  {type:'tf', badge:'صح أم خطأ', time:20, q:'التكافل الاجتماعي هو تنظيم التجارة في الدولة الإسلامية.',
+   correct:false, explain:'خطأ — التكافل الاجتماعي هو تضامن وتعاون أفراد المجتمع في مواجهة المخاطر والتحديات المادية والمعنوية.'},
+  {type:'fill', badge:'الشخصية', time:25, q:'_____ هي التي أخفت خبر وفاة زوجها السلطان الصالح نجم الدين أيوب وساهمت في هزيمة الحملة الصليبية السابعة.',
+   answer:'شجر الدر', explain:'أخفت شجر الدر خبر وفاة زوجها وأرسلت الأوامر باسمه مما أدى لانتصار المسلمين على الحملة الصليبية السابعة.'},
+
+  // درس 4 — العلوم والفنون في الحضارة الإسلامية
+  {type:'mc', badge:'اختياري', time:25, q:'من أسس علم الجبر عند المسلمين؟',
+   opts:['ابن سينا','الحسن بن الهيثم','الخوارزمي ☆','ابن خلدون'], correct:2,
+   explain:'أسس الخوارزمي علم الجبر وأضاف المسلمون الصفر للأرقام.'},
+  {type:'tf', badge:'صح أم خطأ', time:20, q:'من أسباب اهتمام المسلمين بعلم الفلك تحديد مواعيد الصلوات والصيام والحج.',
+   correct:true, explain:'صحيح — اهتم المسلمون بعلم الفلك لتحديد مواعيد الصلوات والصيام والحج.'},
+  {type:'essay', badge:'علّل', time:50, q:'لماذا كان ملوك أوروبا يرسلون أبناءهم إلى الأندلس؟',
+   keywords:['علوم','حضارة','مركز','العالم'],
+   modelAnswer:'لأن الأندلس في عهد المسلمين أصبحت مركزاً من مراكز الحضارة في العالم، فكان ملوك أوروبا يرسلون أبناءهم لتلقي العلوم بها.',
+   explain:''},
+  {type:'fill', badge:'المصطلح', time:20, q:'_____ هو مبنى منيع يُبنى على موقع يصعب الوصول إليه ويكون مقراً للحكم.',
+   answer:'القلعة', explain:'القلعة: مبنى منيع يُبنى على موقع يصعب الوصول إليه ويكون مقراً للحكم.'},
+  {type:'mc', badge:'ما النتائج؟', time:30, q:'ما نتيجة براعة المسلمين في الرياضيات؟',
+   opts:['ترجم الأوروبيون كتب الطب فقط','أسس الخوارزمي علم الجبر وأضاف المسلمون الصفر للأرقام ☆','بنى المسلمون المستشفيات','انتشر الإسلام في أوروبا'], correct:1,
+   explain:'برع المسلمون في الرياضيات فأسس الخوارزمي علم الجبر وأضافوا الصفر للأرقام التي أخذها الأوروبيون عنهم.'},
+  {type:'mc', badge:'اختياري', time:25, q:'من أسس علم الاجتماع من علماء المسلمين؟',
+   opts:['ابن سينا','الحسن بن الهيثم','الخوارزمي','ابن خلدون ☆'], correct:3,
+   explain:'أسس عبد الرحمن بن خلدون علم الاجتماع ونقل الأوروبيون عنه أصول هذا العلم وطبقوه في دراسة مجتمعاتهم.'},
+  {type:'tf', badge:'صح أم خطأ', time:20, q:'استخدم المسلمون الزخرفة في الرسم على الزجاج والسجاد والخزف.',
+   correct:true, explain:'صحيح — برع المسلمون في الزخرفة واستخدموها في الرسم على الزجاج والسجاد والخزف.'},
+];
+
+const INFOGRAPHICS = [
+  {
+    title:'الدرس الأول: مصر والدول المستقلة',
+    desc:'أكملت 5 أسئلة بنجاح! إليك ملخص مرئي للدرس الأول',
+    badge:'📜 درس 1 من 4',
+    html:`
+    <div class="info-grid">
+      <div class="info-card blue">
+        <h3>🕌 الدولة الطولونية</h3>
+        <ul>
+          <li>مؤسسها: أحمد بن طولون</li>
+          <li>العاصمة: مدينة القطائع</li>
+          <li>أول دولة مستقلة عن العباسيين</li>
+          <li>ضم الشام والحجاز لمصر</li>
+          <li>بنى الجامع الشهير باسمه</li>
+        </ul>
+      </div>
+      <div class="info-card green">
+        <h3>🌙 الدولة الفاطمية</h3>
+        <ul>
+          <li>بنوا مدينة القاهرة عاصمةً</li>
+          <li>بنوا الجامع الأزهر</li>
+          <li>الشدة المستنصرية: نقص مياه النيل</li>
+          <li>سببت سقوط الدولة الفاطمية</li>
+        </ul>
+      </div>
+      <div class="info-card gold">
+        <h3>⚔️ دولة المماليك</h3>
+        <ul>
+          <li>غلمان اشتراهم الأيوبيون</li>
+          <li>تصفية الوجود الصليبي بالشرق</li>
+          <li>صدوا خطر المغول</li>
+          <li>سقطوا 1517م أمام العثمانيين</li>
+        </ul>
+      </div>
+      <div class="info-card red">
+        <h3>📍 الفتح الإسلامي لمصر</h3>
+        <ul>
+          <li>قائده: عمرو بن العاص</li>
+          <li>بنى الفسطاط عاصمةً لمصر</li>
+          <li>أحسن معاملة الأقباط</li>
+          <li>تخليص أهل مصر من ظلم البيزنطيين</li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-full">
+      <h3>📅 تسلسل الدول في مصر</h3>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot" style="background:#185FA5">🕌</div><div class="tl-text">الفتح الإسلامي</div><div class="tl-year">641م</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:#8B6914">🏛</div><div class="tl-text">الطولونية</div><div class="tl-year">868م</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:#1B6B3A">☪</div><div class="tl-text">الفاطمية</div><div class="tl-year">969م</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:#7B1FA2">🗡</div><div class="tl-text">الأيوبية</div><div class="tl-year">1171م</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:#C62828">🏇</div><div class="tl-text">المماليك</div><div class="tl-year">1250م</div></div>
+      </div>
+    </div>
+    <button class="continue-info-btn" onclick="continueFromInfo()">متابعة الأسئلة ◀</button>`
+  },
+  {
+    title:'متابعة الدرس الأول',
+    desc:'أحسنت! وصلت إلى 10 أسئلة',
+    badge:'🌟 نصف الطريق تقريباً!',
+    html:`
+    <div class="info-full">
+      <h3>❓ أسباب ظهور الدول المستقلة في مصر</h3>
+      <div class="info-grid" style="margin-top:12px">
+        <div class="info-card blue"><h3>1️⃣ ضعف الخلفاء</h3><ul><li>ضعف خلفاء الدولة العباسية في العصر العباسي الثاني</li></ul></div>
+        <div class="info-card green"><h3>2️⃣ نفوذ الولاة</h3><ul><li>زيادة نفوذ الولاة وطمعهم في ثروات مصر الاقتصادية</li></ul></div>
+        <div class="info-card gold"><h3>3️⃣ البُعد الجغرافي</h3><ul><li>بُعد مصر عن مركز الخلافة العباسية في بغداد</li></ul></div>
+        <div class="info-card red"><h3>4️⃣ الثروات</h3><ul><li>ثروات مصر الاقتصادية جعلتها مطمعاً للولاة الطامحين</li></ul></div>
+      </div>
+    </div>
+    <button class="continue-info-btn" onclick="continueFromInfo()">متابعة الأسئلة ◀</button>`
+  },
+  {
+    title:'الدرس الثاني: أخطار هددت الدولة الإسلامية',
+    desc:'ممتاز! وصلت إلى 15 سؤال',
+    badge:'⚔️ درس 2 من 4',
+    html:`
+    <div class="info-grid">
+      <div class="info-card blue">
+        <h3>🗡 موقعة حطين</h3>
+        <ul>
+          <li>السبب: نقض أرناط الهدنة ومهاجمته الحجاج</li>
+          <li>النتيجة: انتصار صلاح الدين</li>
+          <li>فتح بيت المقدس</li>
+          <li>تدمير الجيش الصليبي</li>
+        </ul>
+      </div>
+      <div class="info-card green">
+        <h3>🏰 صلاح الدين الأيوبي</h3>
+        <ul>
+          <li>أسس الدولة الأيوبية</li>
+          <li>بنى قلعة صالح الدين في القاهرة</li>
+          <li>وحّد الجبهة الإسلامية</li>
+          <li>وقّع صلح الرملة</li>
+        </ul>
+      </div>
+      <div class="info-card gold">
+        <h3>🐎 المغول</h3>
+        <ul>
+          <li>قبائل رعوية من وسط آسيا</li>
+          <li>اتحدوا بقيادة جنكيز خان</li>
+          <li>هولاكو حاصر بغداد وقتل الخليفة</li>
+          <li>هزمهم المماليك في عين جالوت</li>
+        </ul>
+      </div>
+      <div class="info-card red">
+        <h3>✝️ الحملات الصليبية</h3>
+        <ul>
+          <li>الهدف المعلن: حماية المسيحيين</li>
+          <li>الهدف الحقيقي: ثروات الشرق</li>
+          <li>الحملة الأولى: أسست 3 إمارات</li>
+          <li>الحملة السابعة: هُزمت في المنصورة</li>
+        </ul>
+      </div>
+    </div>
+    <button class="continue-info-btn" onclick="continueFromInfo()">متابعة الأسئلة ◀</button>`
+  },
+  {
+    title:'الدرس الثالث: مظاهر الحياة في الحضارة الإسلامية',
+    desc:'رائع! وصلت إلى 20 سؤال',
+    badge:'🏛 درس 3 من 4',
+    html:`
+    <div class="info-grid">
+      <div class="info-card blue">
+        <h3>👑 نظام الحكم</h3>
+        <ul>
+          <li>الخليفة: يدير الدولة ويختار المسؤولين</li>
+          <li>الوزير: يشرف على النظام الإداري</li>
+          <li>الولاة: يديرون الولايات</li>
+          <li>بدأ نظام الخلافة بعد وفاة النبي ﷺ</li>
+        </ul>
+      </div>
+      <div class="info-card green">
+        <h3>📜 الدواوين</h3>
+        <ul>
+          <li>أسسها عمر بن الخطاب</li>
+          <li>ديوان الجند وبيت المال</li>
+          <li>مكان لحفظ سجلات الدولة</li>
+          <li>تنظيم شؤون الدولة الإسلامية</li>
+        </ul>
+      </div>
+      <div class="info-card gold">
+        <h3>👩 دور المرأة</h3>
+        <ul>
+          <li>حق الميراث وامتلاك الأموال</li>
+          <li>مريم الأسطرلابي: عالمة في الفلك</li>
+          <li>شجر الدر: حكمت وهزمت الصليبيين</li>
+          <li>مشاركة في بناء الحضارة</li>
+        </ul>
+      </div>
+      <div class="info-card red">
+        <h3>💰 الاقتصاد</h3>
+        <ul>
+          <li>ازدهار الزراعة والصناعة والتجارة</li>
+          <li>طوائف الحرف لتنظيم الصناعة</li>
+          <li>بناء السدود والترع</li>
+          <li>أخلاق التجار نشرت الإسلام</li>
+        </ul>
+      </div>
+    </div>
+    <button class="continue-info-btn" onclick="continueFromInfo()">متابعة الأسئلة ◀</button>`
+  },
+  {
+    title:'الدرس الرابع: العلوم والفنون في الحضارة الإسلامية',
+    desc:'أنت بطل! 25 سؤالاً خلفك',
+    badge:'🔬 درس 4 من 4',
+    html:`
+    <div class="info-grid">
+      <div class="info-card blue">
+        <h3>🔬 العلوم</h3>
+        <ul>
+          <li>الخوارزمي: أسس علم الجبر + الصفر</li>
+          <li>ابن سينا: طب وجراحة</li>
+          <li>ابن خلدون: علم الاجتماع</li>
+          <li>الحسن بن الهيثم: كتاب المناظر</li>
+        </ul>
+      </div>
+      <div class="info-card green">
+        <h3>🎨 الفنون والعمارة</h3>
+        <ul>
+          <li>الخط العربي في المصاحف والمساجد</li>
+          <li>الأرابيسك: نوع من الزخرفة</li>
+          <li>بناء المدن والمستشفيات</li>
+          <li>القلاع والحصون للدفاع</li>
+        </ul>
+      </div>
+      <div class="info-card gold">
+        <h3>🏫 التعليم</h3>
+        <ul>
+          <li>الكتاتيب: تعليم أساسي للأطفال</li>
+          <li>المدارس والمساجد: حلقات العلم</li>
+          <li>المكتبات: حفظ الكتب والاطلاع</li>
+          <li>الأندلس: مركز حضاري عالمي</li>
+        </ul>
+      </div>
+      <div class="info-card red">
+        <h3>🌍 انتقال الحضارة</h3>
+        <ul>
+          <li>عبر الحروب الصليبية</li>
+          <li>الرحلات التجارية مع إيطاليا</li>
+          <li>ترجم الأوروبيون كتب المسلمين</li>
+          <li>أصبحت أساس الحضارة الأوروبية</li>
+        </ul>
+      </div>
+    </div>
+    <button class="continue-info-btn" onclick="continueFromInfo()">إنهاء المراجعة ◀</button>`
+  }
+];
+
+// ===== GAME STATE =====
+let currentQ = 0;
+let score = 0;
+let correctCount = 0;
+let wrongCount = 0;
+let timer = null;
+let timeLeft = 0;
+let startTime = null;
+let infoIndex = 0;
+let answered = false;
+
+// Sounds via Web Audio API
+function playSound(type) {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    if (type === 'correct') {
+      const notes = [523, 659, 784, 1047];
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.frequency.value = freq;
+        osc.type = 'sine';
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i*0.1);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i*0.1 + 0.25);
+        osc.start(ctx.currentTime + i*0.1);
+        osc.stop(ctx.currentTime + i*0.1 + 0.25);
+      });
+    } else {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.frequency.value = 220;
+      osc.type = 'sawtooth';
+      gain.gain.setValueAtTime(0.2, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.4);
+    }
+  } catch(e) {}
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+}
+
+function startGame() {
+  currentQ = 0; score = 0; correctCount = 0; wrongCount = 0; infoIndex = 0;
+  startTime = Date.now();
+  showScreen('quiz');
+  loadQuestion();
+}
+
+function loadQuestion() {
+  const q = QUESTIONS[currentQ];
+  answered = false;
+  document.getElementById('q-num').innerText = currentQ + 1;
+  document.getElementById('score-disp').innerText = score;
+  document.getElementById('progress-bar').style.width = ((currentQ / QUESTIONS.length) * 100) + '%';
+  document.getElementById('feedback-banner').style.display = 'none';
+  document.getElementById('next-btn').style.display = 'none';
+
+  // Badge
+  const badgeEl = document.getElementById('q-type-badge');
+  badgeEl.innerText = q.badge;
+  badgeEl.className = 'q-type-badge';
+  if (q.type === 'mc') badgeEl.classList.add('badge-mc');
+  else if (q.type === 'tf') badgeEl.classList.add('badge-tf');
+  else if (q.type === 'fill') badgeEl.classList.add('badge-fill');
+  else if (q.type === 'essay') badgeEl.classList.add('badge-essay');
+
+  document.getElementById('q-text').innerText = q.q;
+
+  const area = document.getElementById('q-answer-area');
+  area.innerHTML = '';
+
+  if (q.type === 'mc') {
+    area.innerHTML = '<div class="options-grid">' +
+      q.opts.map((opt, i) => {
+        const label = opt.replace(' ☆','');
+        return `<button class="option-btn" onclick="answerMC(${i})" id="opt-${i}">
+          <span class="opt-letter">${['أ','ب','ج','د'][i]}</span>${label}
+        </button>`;
+      }).join('') + '</div>';
+  } else if (q.type === 'tf') {
+    area.innerHTML = `<div class="tf-grid">
+      <button class="tf-btn true-btn" onclick="answerTF(true)" id="tf-true">✅ صواب</button>
+      <button class="tf-btn false-btn" onclick="answerTF(false)" id="tf-false">❌ خطأ</button>
+    </div>`;
+  } else if (q.type === 'fill') {
+    area.innerHTML = `<input type="text" class="fill-input" id="fill-input" placeholder="اكتب إجابتك هنا..." onkeydown="if(event.key==='Enter') submitFill()" dir="rtl">
+      <button class="submit-btn" onclick="submitFill()">تأكيد الإجابة</button>`;
+    setTimeout(() => document.getElementById('fill-input').focus(), 100);
+  } else if (q.type === 'essay') {
+    area.innerHTML = `<textarea class="fill-input" id="essay-input" placeholder="اكتب إجابتك بالتفصيل هنا..." dir="rtl"></textarea>
+      <button class="submit-btn" onclick="submitEssay()">تأكيد الإجابة</button>`;
+    setTimeout(() => document.getElementById('essay-input').focus(), 100);
+  }
+
+  startTimer(q.time);
+}
+
+function startTimer(seconds) {
+  clearInterval(timer);
+  timeLeft = seconds;
+  const el = document.getElementById('timer-num');
+  el.className = 'timer-num';
+  el.innerText = timeLeft;
+  timer = setInterval(() => {
+    timeLeft--;
+    el.innerText = timeLeft;
+    if (timeLeft <= 5) el.classList.add('urgent');
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      if (!answered) timeUp();
+    }
+  }, 1000);
+}
+
+function timeUp() {
+  answered = true;
+  const q = QUESTIONS[currentQ];
+  playSound('wrong');
+  wrongCount++;
+  showFeedback('wrong', '⏰ انتهى الوقت! ' + (q.explain || 'الإجابة الصحيحة: ' + (q.answer || (q.type==='tf' ? (q.correct?'صواب':'خطأ') : q.opts[q.correct]))));
+  // disable all buttons
+  disableAll();
+}
+
+function disableAll() {
+  document.querySelectorAll('#q-answer-area button, #q-answer-area input, #q-answer-area textarea').forEach(el => el.disabled = true);
+}
+
+function answerMC(idx) {
+  if (answered) return;
+  answered = true;
+  clearInterval(timer);
+  const q = QUESTIONS[currentQ];
+  disableAll();
+  if (idx === q.correct) {
+    document.getElementById('opt-' + idx).classList.add('correct');
+    score += 3; correctCount++;
+    playSound('correct');
+    showFeedback('correct', '🎉 إجابة صحيحة! ' + q.explain);
+  } else {
+    document.getElementById('opt-' + idx).classList.add('wrong');
+    document.getElementById('opt-' + q.correct).classList.add('correct');
+    wrongCount++;
+    playSound('wrong');
+    showFeedback('wrong', '❌ إجابة خاطئة. ' + q.explain);
+  }
+}
+
+function answerTF(val) {
+  if (answered) return;
+  answered = true;
+  clearInterval(timer);
+  const q = QUESTIONS[currentQ];
+  disableAll();
+  const trueBtn = document.getElementById('tf-true');
+  const falseBtn = document.getElementById('tf-false');
+  if (val === q.correct) {
+    (val ? trueBtn : falseBtn).classList.add('correct');
+    score += 2; correctCount++;
+    playSound('correct');
+    showFeedback('correct', '🎉 إجابة صحيحة! ' + q.explain);
+  } else {
+    (val ? trueBtn : falseBtn).classList.add('wrong');
+    (!val ? trueBtn : falseBtn).classList.add('correct');
+    wrongCount++;
+    playSound('wrong');
+    showFeedback('wrong', '❌ إجابة خاطئة. ' + q.explain);
+  }
+}
+
+function submitFill() {
+  if (answered) return;
+  const inp = document.getElementById('fill-input');
+  const userAns = inp.value.trim();
+  if (!userAns) return;
+  answered = true;
+  clearInterval(timer);
+  const q = QUESTIONS[currentQ];
+  disableAll();
+  const correct = q.answer;
+  const sim = similarity(userAns, correct);
+  if (sim >= 0.6) {
+    inp.classList.add('correct-input');
+    score += 3; correctCount++;
+    playSound('correct');
+    showFeedback('correct', '🎉 إجابة صحيحة! الإجابة الصحيحة: ' + correct);
+  } else {
+    inp.classList.add('wrong-input');
+    wrongCount++;
+    playSound('wrong');
+    showFeedback('wrong', '❌ الإجابة الصحيحة هي: ' + correct);
+  }
+}
+
+function submitEssay() {
+  if (answered) return;
+  const ta = document.getElementById('essay-input');
+  const userAns = ta.value.trim();
+  if (userAns.length < 5) return;
+  answered = true;
+  clearInterval(timer);
+  const q = QUESTIONS[currentQ];
+  disableAll();
+  // Count keywords found
+  const found = q.keywords.filter(kw => userAns.includes(kw)).length;
+  const ratio = found / q.keywords.length;
+  if (ratio >= 0.6) {
+    score += 4; correctCount++;
+    playSound('correct');
+    showFeedback('correct', `🎉 إجابة وافية! ذكرت ${found} من ${q.keywords.length} نقاط أساسية.<div class="model-answer">الإجابة النموذجية: ${q.modelAnswer}</div>`);
+  } else if (ratio >= 0.3) {
+    score += 2; correctCount++;
+    playSound('correct');
+    showFeedback('partial', `💛 إجابة جزئية — ذكرت ${found} من ${q.keywords.length} نقاط أساسية.<div class="model-answer">الإجابة النموذجية: ${q.modelAnswer}</div>`);
+  } else {
+    wrongCount++;
+    playSound('wrong');
+    showFeedback('wrong', `❌ إجابة غير كافية — ذكرت ${found} من ${q.keywords.length} نقاط.<div class="model-answer">الإجابة النموذجية: ${q.modelAnswer}</div>`);
+  }
+}
+
+function normalizeAr(s) {
+  return s.trim()
+    .replace(/أ|إ|آ/g,'ا')
+    .replace(/ة/g,'ه')
+    .replace(/ى/g,'ي')
+    .replace(/\s+/g,' ');
+}
+
+function similarity(a, b) {
+  a = normalizeAr(a); b = normalizeAr(b);
+  if (a === b) return 1;
+  if (b.includes(a) && a.length >= b.length * 0.7) return 0.9;
+  if (a.includes(b) && b.length >= a.length * 0.7) return 0.9;
+  const wordsA = a.split(/\s+/);
+  const wordsB = b.split(/\s+/);
+  const matchedWords = wordsA.filter(w => w.length > 2 && wordsB.some(wb => wb === w || (w.length > 4 && wb.includes(w)) || (wb.length > 4 && w.includes(wb))));
+  const wordScore = matchedWords.length / Math.max(wordsA.length, wordsB.length);
+  return wordScore;
+}
+
+function showFeedback(type, html) {
+  const fb = document.getElementById('feedback-banner');
+  fb.className = 'feedback-banner ' + type + '-fb';
+  fb.innerHTML = html;
+  fb.style.display = 'block';
+  document.getElementById('next-btn').style.display = 'block';
+  document.getElementById('score-disp').innerText = score;
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ >= QUESTIONS.length) {
+    showResults();
+    return;
+  }
+  // Check for infographic breaks at 5, 10, 15, 20, 25
+  if ([5,10,15,20,25].includes(currentQ)) {
+    showInfoScreen(infoIndex);
+    infoIndex++;
+    return;
+  }
+  showScreen('quiz');
+  loadQuestion();
+}
+
+function continueFromInfo() {
+  showScreen('quiz');
+  loadQuestion();
+}
+
+function showInfoScreen(idx) {
+  const info = INFOGRAPHICS[idx];
+  document.getElementById('info-title').innerText = info.title;
+  document.getElementById('info-desc').innerText = info.desc;
+  document.getElementById('info-badge').innerText = info.badge;
+  document.getElementById('info-body').innerHTML = info.html;
+  showScreen('info');
+}
+
+function continueFromInfo() {
+  showScreen('quiz');
+  loadQuestion();
+}
+
+function showResults() {
+  const elapsed = Math.round((Date.now() - startTime) / 60000);
+  document.getElementById('final-score').innerText = score;
+  document.getElementById('final-total').innerText = 'من ' + (QUESTIONS.length * 3);
+  document.getElementById('r-correct').innerText = correctCount;
+  document.getElementById('r-wrong').innerText = wrongCount;
+  document.getElementById('r-time').innerText = elapsed;
+
+  const pct = score / (QUESTIONS.length * 3);
+  let grade, badge, trophy;
+  if (pct >= 0.85) { grade = 'grade-a'; badge = '🥇 ممتاز'; trophy = '🏆'; }
+  else if (pct >= 0.70) { grade = 'grade-b'; badge = '🥈 جيد جداً'; trophy = '🎖️'; }
+  else if (pct >= 0.50) { grade = 'grade-c'; badge = '🥉 جيد'; trophy = '👍'; }
+  else { grade = 'grade-d'; badge = '📚 تحتاج لمراجعة'; trophy = '💪'; }
+
+  document.getElementById('result-trophy').innerText = trophy;
+  document.getElementById('grade-badge').className = 'grade-badge ' + grade;
+  document.getElementById('grade-badge').innerText = badge;
+  document.getElementById('result-title').innerText = pct >= 0.7 ? 'أحسنت يا بطل! 🌟' : 'لا تستسلم — راجع وحاول مجدداً!';
+  showScreen('results');
+}
+
+function restartGame() {
+  startGame();
+}
+</script>
+</body>
+</html>
